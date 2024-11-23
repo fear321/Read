@@ -4,6 +4,7 @@ const toggleLoopBtn = document.getElementById("toggleLoopBtn");
 const addTextBtn = document.getElementById("addTextBtn");
 const speedRange = document.getElementById("speedRange");
 const speedValue = document.getElementById("speedValue");
+const metronomeSound = document.getElementById("metronomeSound"); // Metronom sesi
 
 let textArray = [
     "Bir", "sabah", "erkenden", "uyanıp", "dışarı", "çıktım,", "güneş", "henüz", 
@@ -15,8 +16,8 @@ let textArray = [
     "araba", "geçti,", "ardından", "yavaşça", "adımlar", "atılmaya", "başladı.", 
     "Gün", "yavaşça", "açılıyordu,", "ama", "her", "şey", "hala", "sakin", "ve", 
     "sessizdi.", "Bütün", "şehir", "sanki", "uykuda", "gibiydi."
-  ];
-  let index = 0;
+];
+let index = 0;
 let interval = null;
 let isLoopActive = false;
 let isExerciseRunning = false;
@@ -87,10 +88,14 @@ function startReading() {
     interval = setInterval(() => {
         if (index < textArray.length) {
             display.textContent = textArray[index];
+            metronomeSound.currentTime = 0; // Sesi baştan çal
+            metronomeSound.play();
             index++;
         } else if (isLoopActive) {
             index = 0;
             display.textContent = textArray[index];
+            metronomeSound.currentTime = 0; // Sesi baştan çal
+            metronomeSound.play();
             index++;
         } else {
             clearInterval(interval);
@@ -111,3 +116,66 @@ resetBtn.addEventListener("click", () => {
         isExerciseRunning = false;
     }
 });
+
+
+const levelSelect = document.getElementById("levelSelect"); // Seviye seçimi
+let wordsPerDisplay = 1; // Başlangıçta 1 kelime gösterilecek
+
+// Seviye değiştiğinde kelimeleri hemen güncelle
+levelSelect.addEventListener("change", () => {
+    wordsPerDisplay = parseInt(levelSelect.value, 10); // Seçilen seviyeyi al
+    updateDisplay(); // Seviye seçimi sonrası ekrandaki kelimeleri güncelle
+});
+
+// Ekrandaki kelimeleri hemen güncelleyen işlev
+function updateDisplay() {
+    if (textArray.length > 0) {
+        const endIndex = Math.min(index + wordsPerDisplay, textArray.length);
+        display.textContent = textArray.slice(index, endIndex).join(" ");
+    } else {
+        display.textContent = "Metin bulunamadı!";
+    }
+}
+
+// Metni okuma işlevini düzenle
+function startReading() {
+    const wordsPerMinute = speedRange.value;
+    const speed = 60000 / wordsPerMinute;
+
+    clearInterval(interval);
+    interval = setInterval(() => {
+        if (index < textArray.length) {
+            // Belirlenen seviye kadar kelimeyi birleştirip ekrana yazdır
+            const endIndex = Math.min(index + wordsPerDisplay, textArray.length); // Diziyi aşmayacak şekilde ayarla
+            display.textContent = textArray.slice(index, endIndex).join(" ");
+            metronomeSound.currentTime = 0; // Sesi baştan çal
+            metronomeSound.play();
+            index += wordsPerDisplay; // Gösterilen kelime sayısına göre ilerle
+        } else if (isLoopActive) {
+            index = 0;
+            const endIndex = Math.min(index + wordsPerDisplay, textArray.length);
+            display.textContent = textArray.slice(index, endIndex).join(" ");
+            metronomeSound.currentTime = 0;
+            metronomeSound.play();
+            index += wordsPerDisplay;
+        } else {
+            clearInterval(interval);
+            startStopBtn.innerHTML = '<i class="fas fa-play"></i>Başlat';
+            isExerciseRunning = false;
+        }
+    }, speed);
+}
+
+// Metni sıfırladığınızda ekrandaki kelimeleri güncelle
+resetBtn.addEventListener("click", () => {
+    index = 0;
+    updateDisplay(); // Sıfırlandığında ekranda güncel kelimeler gösterilsin
+    if (isExerciseRunning) {
+        clearInterval(interval);
+        startStopBtn.innerHTML = '<i class="fas fa-play"></i>Başlat';
+        isExerciseRunning = false;
+    }
+});
+
+// Başlangıçta metni güncelle
+updateDisplay();
