@@ -2,194 +2,207 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #202020;
-    color: #333;
+    background-color: #161616;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
     overflow-x: hidden;
-}
-
-header {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 10px;
-    z-index: 10;
-    background-color: #202020;
-    position: relative;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.904);
+    text-shadow: 0 5px 10px rgba(255, 255, 255, 0.473);
+    cursor: default;
 }
 
 #header {
-    font-size: 25px;
-    color: rgba(255, 255, 255, 0.904);
-    text-shadow: 0 5px 10px rgba(255, 255, 255, 0.473);
-    margin-left: 2vw;
-}
-
-.topcontrols {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-left: auto;
-    gap: 15px;
-    margin-right: 10px;
+    font-size: 1.6rem;
 }
 
 .topcontrols button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.topcontrols button:hover {
-    background-color: #555;
+    padding: 12px 25px;
+    font-size: 1.1rem;
 }
 
 .container {
-    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    text-align: center;
-    padding: 20px;
+    width: 80%;
+    height: 50vh;
     box-sizing: border-box;
-    overflow-y: auto;
+    max-width: 900px;
 }
 
 .display {
-    font-size: 1.7rem;
+    font-size: 2rem;
     margin: 20px 0;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    color: aliceblue;
     padding: 10%;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Butonu yukarı almak için flex-start */
-    flex-direction: column; /* Butonları dikey hizalamak için */
-    margin-top: 20px;
+    box-shadow: 0 1px 200px rgba(156, 156, 156, 0.473);
+    border-radius: 8px;
+    color: aliceblue;
+    width: 50%;
+    max-width: 800px;
+    text-align: center;
 }
 
 .controls button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.controls button:hover {
-    background-color: #555;
-}
-
-.speed-control {
-    position: absolute;
-    bottom: 2vw;
-    right: 2vw;
-}
-
-.speed-control label {
-    margin-right: 10px;
-}
-
-.speed-control input[type="range"] {
-    cursor: pointer;
-}
-
-#wordCount {
-    position: absolute;
-    top: 3vw;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.3rem;
-    color: rgba(160, 160, 160, 0.473);
-    text-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
-}
-.topcontrols button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.topcontrols button:hover {
-    background-color: #555;
-}
-
-/* Reset Butonuna özel stil */
-#resetBtn {
-    background-color: #c0392b; /* Kırmızı renk */
-}
-
-#resetBtn:hover {
-    background-color: #e74c3c; /* Hover efekti */
-}
-/* Butonları yan yana hizalamak için button-group kullanılıyor */
-.controls .button-group {
-    display: flex;
-    gap: 10px; /* Butonlar arasında boşluk */
-    justify-content: center; /* Ortada hizalama */
-    margin-bottom: 20px; /* Butonlar arasında biraz boşluk */
-}
-
-.topcontrols button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.topcontrols button:hover {
-    background-color: #555;
-}
-
-/* Reset Butonuna özel stil */
-#resetBtn {
-    background-color: #c0392b; /* Kırmızı renk */
-}
-
-#resetBtn:hover {
-    background-color: #e74c3c; /* Hover efekti */
-}
-/* İkonlar için genel stil */
-button i {
-    margin-right: 8px; /* İkon ile metin arasında boşluk */
-}
-
-/* Font Awesome için ikon boyutu */
-button i.fas {
     font-size: 1.2rem;
 }
 
-/* Button group içinde ikonların hizalanması */
-.button-group button {
+.speed-control label {
+    font-size: 1.1rem;
+}
+
+.speed-control input[type="range"] {
+    width: 200px;  /* Scroll genişliği */
+    height: 5px;
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Header ve Buton gruplarının hizalanması */
+header, .button-group {
+    white-space: nowrap;
+
     display: flex;
-    align-items: center; /* İkon ve metni yatayda hizalar */
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 20px;
+    z-index: 10;
+    position: relative;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+    transition: all 0.3s ease;
+    gap: 10px;
+    
+}
+
+button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+    cursor: crosshair;
+}
+
+.button-group button {
+    display: inline-flex;
+    align-items: center;
+}
+
+#resetBtn {
+    background-color: #c0392b;
+    border-radius: 8px;
+}
+
+#resetBtn:hover {
+    background-color: #e74c3c;
+}
+
+.topcontrols button {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+}
+
+/* Sağ hizalama */
+.speed-control {
+    display: flex;
+    justify-content: center;  /* Sağ tarafa hizalama */
+    align-items: center;
+    gap: 10px;  /* Etiket ve kaydırıcı arasında boşluk */
+    width: 100%;
+}
+
+#speedValue {
+    font-size: 1.1rem;
+    color: white;
+}
+
+/* Scroll ve Hız yazısı sağda hizalanacak şekilde */
+.speed-control input[type="range"]:focus {
+    outline: none; /* Focus olduğunda kenarlık görünmesin */
+}
+
+.speed-control input[type="range"]::-webkit-slider-thumb {
+    background-color: #333;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.speed-control input[type="range"]::-moz-range-thumb {
+    background-color: #333;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+
+.controls{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media (max-width: 768px) {
+    #header {
+        padding: 5px 0;
+    }
+
+    .display {
+        width: 60%;
+    }
+
+    .topcontrols button {
+        padding: 10px 10px;
+    }
+
+    .button-group button {
+        padding: 10px 10px;
+
+    }
+}
+
+@media (max-width: 500px) {
+    *, header, button{
+        font-size: 0.7rem;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .topcontrols button, i{
+        font-size: 1.5rem;
+    }
+    .topcontrols button{
+        padding: 10px 10px;
+    }
+    header{
+        padding: 10%;
+        width: 80%;
+    }
+    #header{
+        font-size: 1.5rem;
+    }
+    .container {
+        height: 45vh;
+    }
+
+    .speed-control label, #speedValue {
+        font-size: 1.5rem;
+    }
+
+}
+
+.button-group{
     gap: 10px;
 }
