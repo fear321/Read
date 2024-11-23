@@ -13,7 +13,15 @@
     <header>
         <h1 id="header">Blok Okuma</h1>
         <div class="topcontrols">
-          <button id="addTextBtn"><i class="fas fa-plus"></i> Metin Ekle</button>
+          <div class="level-control">
+            <label for="levelSelect">Lvl:</label>
+            <select id="levelSelect">
+              <option value="1">1. Seviye</option>
+              <option value="2">2. Seviye</option>
+              <option value="3">3. Seviye</option>
+              <option value="4">4. Seviye</option>
+            </select>
+          </div>
         </div>
       </header>
       
@@ -26,14 +34,20 @@
           <button id="startStopBtn"><i class="fas fa-play"></i>Başlat</button>
           <button id="resetBtn"><i class="fas fa-redo"></i> Sıfırla</button>
           <button id="toggleLoopBtn"><i class="fas fa-repeat"></i> Kapalı</button>
+          <button id="addTextBtn"><i class="fas fa-plus"></i> Metin Ekle</button>
         </div>
 
+
+        
+        
         <div class="speed-control">
           <label for="speedRange">Hız:</label>
           <input type="range" id="speedRange" min="100" max="600" step="10" value="250">
           <span id="speedValue">250 k/dk</span> <!-- Canlı hız değeri buraya eklenecek -->
         </div>
     </div>
+    <audio id="metronomeSound" src="metronome-85688.mp3"></audio>
+
 
     <script src="script.js"></script>
 </body>
